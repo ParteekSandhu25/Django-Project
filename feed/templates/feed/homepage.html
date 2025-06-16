@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block body %}
-    {% for post in posts %}
-        <p>{{post.text}}, written at {{post.date}}</p>
-    {% endfor %}
+    {% if request.user.is_authenticated %}
+        {% for post in posts %}
+            <p>{{post.text}}, written at {{post.date}}</p>
+        {% endfor %}
+    {% endif %}
     
+
 {% endblock %}
