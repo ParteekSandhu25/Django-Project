@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Title</title>
+    <title>{% block title%}Default Title {% endblock %}</title>
 </head>
 <body>
     Base body
+    <br><hr>
+    {% block body %}
+
+    {% endblock %}
 </body>
 </html>
