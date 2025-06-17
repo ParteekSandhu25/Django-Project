@@ -2,8 +2,9 @@ from django.views.generic import ListView, DeleteView
 from .models import Post
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 
-class HomePage(ListView):
+class HomePage(LoginRequiredMixin, ListView):
     http_method_names = ["get"]
     template_name = "feed/homepage.html"
     model = Post 
@@ -31,3 +32,20 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         return super().form_valid(form)
+    
+    def post(slef, request, *args, **kwargs):
+        post = Post.objects.create(
+            text = request.POST.get('text'),
+            author = request.user
+        )
+
+        return render(
+            render, 
+            "includes/post.html",
+            {
+                "post": post, 
+                "show_detail_link": True
+            },
+            content_type="application/html"
+
+        )
