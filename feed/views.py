@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DeleteView
 from .models import Post
 from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HomePage(ListView):
     http_method_names = ["get"]
@@ -15,7 +16,7 @@ class PostDetailView(DeleteView):
     model = Post 
     context_object_name = "post"
 
-class CreateNewPost(CreateView):
+class CreateNewPost(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'feed/create.html'
     fields= ['text']
