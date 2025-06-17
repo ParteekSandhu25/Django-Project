@@ -3,5 +3,5 @@
 {% block title %} {{post.text}} by {{post.author.username}} {% endblock %}
 
 {% block body %}
-    {{ post.text }}
+    {% include "includes/post.html" with post=post show_detail_link=True%}
 {% endblock %}

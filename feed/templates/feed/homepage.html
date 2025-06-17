@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} 
-    New Title Coming from HomePage.html
-{% endblock %}
+{# TODO: Change title text #}
+{% block title %}Changed the title of the homepage{% endblock %}
 
 {% block body %}
-    {% if request.user.is_authenticated %}
+    <div id="posts-container">
         {% for post in posts %}
-            <p>{{post.text}}, written at {{post.date}}</p>
+            {% include "includes/post.html" with post=post show_detail_link=True%}
         {% endfor %}
-    {% endif %}
-    
-
+    </div>
 {% endblock %}
