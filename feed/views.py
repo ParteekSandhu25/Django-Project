@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DeleteView
 from .models import Post
+from django.views.generic.edit import CreateView
 
 class HomePage(ListView):
     http_method_names = ["get"]
@@ -13,3 +14,8 @@ class PostDetailView(DeleteView):
     template_name = 'feed/detail.html'
     model = Post 
     context_object_name = "post"
+
+class CreateNewPost(CreateView):
+    model = Post
+    template_name = 'feed/create.html'
+    fields= ['text']
